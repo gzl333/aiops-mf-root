@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSTCloud</title>
+
+    <% if (isLocal) { %>
+        <!--@mimas: quasar css， 随quasar一起升级-->
+        <link href="https://cdn.jsdelivr.net/npm/quasar@2.11.5/dist/quasar.prod.css" rel="stylesheet" type="text/css">
+        <!--@mimas: Material全部css，注意cdn服务器被屏蔽的问题，例如google要切换成国内地址-->
+        <link href="https://fonts.font.im/css?family=Roboto:100,300,400,500,700,900|Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp"
+                  rel="stylesheet" type="text/css">
+        <!--@mimas: mdi is blocked in China since May 17, 2022 :| -->
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@^6.0.0/css/materialdesignicons.min.css" rel="stylesheet"
+              type="text/css">
+        <!--@mimas: line-awesome-->
+        <link href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+              rel="stylesheet" type="text/css">
+        <link href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css"
+                  rel="stylesheet" type="text/css">
+    <% } else { %>
+        <!--@mimas: 本项目自定义css, 包含material design/roboto/mdi/line-awesome等.如需增加新包，应更新quasar打包后的app.css和fonts内所有文件-->
+        <link href="/css/app.css" rel="stylesheet" type="text/css">
+    <% } %>
+
+    <!--
+      Remove this if you only support browsers that support async/await.
+      This is needed by babel to share largeish helper code for compiling async/await in older
+      browsers. More information at https://github.com/single-spa/create-single-spa/issues/112
+    -->
+    <% if (isLocal) { %>
+        <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script>
+    <% } else { %>
+        <script src="/js/runtime.min.js"></script>
+    <% } %>
+
+    <!--
+      This CSP allows any SSL-enabled host and for arbitrary eval(), but you should limit these directives further to increase your app's security.
+      Learn more about CSP policies at https://content-security-policy.com/#directive
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';"> -->
+    <meta name="importmap-type" content="systemjs-importmap" />
+    <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
+    <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
+    <!-- <meta name="import-map-overrides-domains" content="denylist:prod.example.com" /> -->
+
+    <!-- Shared dependencies go into this import map. Your shared dependencies must be of one of the following formats:
+
+      1. System.register (preferred when possible) - https://github.com/systemjs/systemjs/blob/master/docs/system-register.md
+      2. UMD - https://github.com/umdjs/umd
+      3. Global variable
+
+      More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
+    -->
+    <% if (isLocal) { %>
+        <script type="systemjs-importmap">
+    {
+      "imports": {
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.3/lib/system/single-spa.min.js",
+        "single-spa-vue": "https://cdn.jsdelivr.net/npm/single-spa-vue@2.5.1/dist/system/single-spa-vue.js",
+        "axios": "https://cdn.jsdelivr.net/npm/axios@0.26.0/dist/axios.min.js",
+        "core-js": "https://cdn.jsdelivr.net/npm/core-js@3.21.1/index.js"
+      }
+    }
+        </script>
+    <% } else { %>
+        <script type="systemjs-importmap" src="/importmap-dependency.json"></script>
+    <% } %>
+
+    <!--https://github.com/vercel/next.js/discussions/16850-->
+    <% if (isLocal) { %>
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.3/lib/system/single-spa.min.js"
+                  as="script" crossOrigin="anonymous">
+    <% } else { %>
+        <link rel="preload" href="/js/single-spa.min.js" as="script" crossOrigin="anonymous">
+    <% } %>
+
+    <!-- Add your organization's prod import map URL to this script's src  -->
+    <% if (isLocal) { %>
+        <script type="systemjs-importmap">
+    {
+      "imports": {
+        "@cnic/root-config": "//localhost:9000/cnic-root-config.js",
+        "@cnic/main": "//localhost:9010/app.js",
+        "@cnic/rca": "//localhost:9020/app.js",
+        "@cnic/monitor": "//localhost:9030/app.js",
+        "@cnic/log": "//localhost:9040/app.js",
+        "@cnic/alert": "//localhost:9050/app.js",
+        "@cnic/trend": "//localhost:9060/app.js",
+        "@cnic/data": "//localhost:9070/app.js"
+        "@cnic/algo": "//localhost:9080/app.js"
+        "@cnic/tool": "//localhost:9090/app.js"
+      }
+    }
+        </script>
+    <% } else { %>
+        <script type="systemjs-importmap" src="/importmap-app.json"></script>
+    <% } %>
+
+    <!--
+      If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
+      Learn more about why at https://single-spa.js.org/docs/ecosystem-angular/#zonejs
+    -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script> -->
+
+    <% if (isLocal) { %>
+        <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+    <% } else { %>
+        <script src="/js/import-map-overrides.js"></script>
+    <% } %>
+
+    <% if (isLocal) { %>
+        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+    <% } else { %>
+        <!--        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>-->
+        <script src="/js/system.min.js"></script>
+        <!--        <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>-->
+        <script src="/js/amd.min.js"></script>
+    <% } %>
+
+</head>
+<!--@mimas: hiding the global scroll bar. Instead, using q-scroll-area in local applications-->
+<body style="overflow: hidden">
+<noscript>
+    You need to enable JavaScript to run this app.
+</noscript>
+<script>
+  System.import("@cnic/root-config");
+</script>
+<import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+</body>
+</html>

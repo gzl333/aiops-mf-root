@@ -1,0 +1,14 @@
+{
+  "imports": {
+    "@cnic/root-config": "/cnic-root-config.js",
+    "@cnic/main": "https://aiops.cstcloud.cn/app/main/app.js",
+    "@cnic/rca": "https://aiops.cstcloud.cn/app/rca/app.js",
+    "@cnic/monitor": "https://aiops.cstcloud.cn/app/monitor/app.js",
+    "@cnic/log": "https://aiops.cstcloud.cn/app/log/app.js",
+    "@cnic/alert": "https://aiops.cstcloud.cn/app/alert/app.js",
+    "@cnic/trend": "https://aiops.cstcloud.cn/app/trend/app.js",
+    "@cnic/data": "https://aiops.cstcloud.cn/app/data/app.js",
+    "@cnic/algo": "https://aiops.cstcloud.cn/app/algo/app.js",
+    "@cnic/tool": "https://aiops.cstcloud.cn/app/tool/app.js"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "single-spa": "/js/single-spa.min.js",
+    "single-spa-vue": "/js/single-spa-vue.js",
+    "axios": "/js/axios.min.js",
+    "core-js": "/js/core-js-index.js"
+  }
+}

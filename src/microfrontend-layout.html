@@ -1,0 +1,43 @@
+<!--
+
+  This is the single-spa Layout Definition for your microfrontends.
+  See https://single-spa.js.org/docs/layout-definition/ for more information.
+
+-->
+<single-spa-router>
+
+  <application name="@cnic/main"></application>
+
+  <route path="/my/rca">
+    <application name="@cnic/rca"></application>
+  </route>
+
+  <route path="/my/monitor">
+    <application name="@cnic/monitor"></application>
+  </route>
+
+  <route path="/my/log">
+    <application name="@cnic/log"></application>
+  </route>
+
+  <route path="/my/alert">
+    <application name="@cnic/alert"></application>
+  </route>
+
+  <route path="/my/trend">
+    <application name="@cnic/trend"></application>
+  </route>
+
+  <route path="/my/data">
+    <application name="@cnic/data"></application>
+  </route>
+
+  <route path="/my/algo">
+    <application name="@cnic/algo"></application>
+  </route>
+
+  <route path="/my/tool">
+    <application name="@cnic/tool"></application>
+  </route>
+
+</single-spa-router>
