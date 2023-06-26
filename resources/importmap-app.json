@@ -9,6 +9,7 @@
     "@cnic/trend": "https://aiops.cstcloud.cn/app/trend/app.js",
     "@cnic/data": "https://aiops.cstcloud.cn/app/data/app.js",
     "@cnic/algo": "https://aiops.cstcloud.cn/app/algo/app.js",
-    "@cnic/tool": "https://aiops.cstcloud.cn/app/tool/app.js"
+    "@cnic/tool": "https://aiops.cstcloud.cn/app/tool/app.js",
+    "@cnic/netflow": "https://aiops.cstcloud.cn/app/netflow/app.js"
   }
 }
